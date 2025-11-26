@@ -1,0 +1,11 @@
+DELIMITER //
+CREATE TRIGGER trg_no_future_expense
+BEFORE INSERT ON expenses
+FOR EACH ROW 
+BEGIN
+IF NEW.expense_date > CURDATE() THEN
+SIGNAL SQLSTATE '45000'
+SET MESSAGE_TEXT = "Future Expense dates not allowed";
+END IF;
+END //
+DELIMITER ;

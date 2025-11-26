@@ -1,0 +1,15 @@
+SELECT SUM(amount) AS total_spending from expenses; -- Total spending Overall
+
+SELECT c.category_name, SUM(e.amount) AS total_spent 
+FROM categories c JOIN expenses e
+ON c.category_id = e.category_id
+GROUP BY c.category_name 
+ORDER BY total_spent DESC
+LIMIT 1;   -- Highest spending category
+
+SELECT c.category_name, SUM(e.amount) AS total_spent 
+FROM categories c JOIN expenses e
+ON c.category_id = e.category_id
+GROUP BY c.category_name 
+ORDER BY total_spent ASC
+LIMIT 1;   -- Lowest Spending Category

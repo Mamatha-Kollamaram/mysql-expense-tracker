@@ -1,0 +1,16 @@
+DELIMITER //
+CREATE PROCEDURE add_expense(
+IN p_user_id INT,
+IN p_category_id INT,
+IN p_method_id INT,
+IN p_amount DECIMAL(10,2),
+IN p_expense_date DATE,
+IN p_note VARCHAR(255)
+)
+BEGIN
+INSERT INTO expenses (user_id, category_id, method_id, amount, expense_date, note) 
+VALUES ( p_user_id, p_category_id, p_method_id, p_amount, p_expense_date, p_note);
+END //
+DELIMITER ;
+
+CALL add_expense(1, 1, 1, 280.00, '2025-01-31', 'Tea and snacks');
